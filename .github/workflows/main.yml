@@ -1,23 +1,17 @@
-name: Deploy to FTP
-
-on:
-  push:
-    branches:
-      - main # Trigger this workflow when pushing to the main branch.
-
+on: push
+name: Publish Website
 jobs:
-  deploy:
+  web-deploy:
+    name: 🚀 Deploy Website Every Commit
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout Repository
+    - name: 🚚 Get Latest Code
       uses: actions/checkout@v3
-
-    - name: Upload Files via FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+    
+    - name: 📂 Sync Files
+      uses: SamKirkland/web-deploy@v1
       with:
-        server: ssh.cvcafbci7.service.one
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./ # Directory to upload (current repo directory)
-        server-dir: /customers/3/e/8/cvcafbci7/webroots/r1021753/ # Remote FTP directory
+        target-server: ssh.cvcafbci7.service.one
+        remote-user: ${{ secrets.FTP_USERNAME }}
+        private-ssh-key: ${{ secrets.FTP_PASSWORD }}
+        destination-path: ~/customers/3/e/8/cvcafbci7/webroots/r1021753/

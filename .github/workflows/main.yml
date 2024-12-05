@@ -20,4 +20,4 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./ # Directory to upload (current repo directory)
-        server-dir: /customers/3/e/8/cvcafbci7/webroots/r1021753 # Remote FTP directory
+        server-dir: /customers/3/e/8/cvcafbci7/webroots/r1021753/ # Remote FTP directory
